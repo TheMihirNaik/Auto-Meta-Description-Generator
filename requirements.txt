@@ -2,4 +2,4 @@ streamlit
 pyngrok
 transformers
 html2text
-sentencepiece
+
