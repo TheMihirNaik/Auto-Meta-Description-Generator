@@ -5,4 +5,3 @@ bs4
 html2text
 transformers
 pyngrok
-os
