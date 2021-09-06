@@ -1,5 +1,5 @@
 streamlit==0.75.0
-urllib
+urllib3
 requests
 bs4
 html2text
