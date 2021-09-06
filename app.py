@@ -8,7 +8,7 @@ import html2text
 import re
 from transformers import pipeline
 import os
-from transformers import PegasusTokenizer, PegasusForConditionalGeneration
+#from transformers import PegasusTokenizer, PegasusForConditionalGeneration
 
 # Set headers
 headers = requests.utils.default_headers()
