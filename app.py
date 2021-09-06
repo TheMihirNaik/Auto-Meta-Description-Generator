@@ -2,10 +2,9 @@ import streamlit as st
 import urllib3
 import requests
 from bs4 import BeautifulSoup
-import re
+#import re
 import requests
 import html2text
-import re
 from transformers import pipeline
 import os
 #from transformers import PegasusTokenizer, PegasusForConditionalGeneration
