@@ -5,4 +5,4 @@ bs4
 html2text
 transformers
 pyngrok
-torch
+tensorflow-cpu
