@@ -29,7 +29,7 @@ if url:
   
   st.text("Status : URL scraped, HTMP Parsed & Cleaned. The content is ready for Summarization.")
 
-  st.caption("Existing Meta Description")
+  st.markdown("Existing Meta Description")
   find_description = soup.find('meta', {'name':'description'})
   existing_description = find_description['content']
   st.write(existing_description)
@@ -42,5 +42,5 @@ if url:
   
   new_description = summarizer(html_to_text, max_length=160)
 
-  st.caption("New Auto Generated Meta Description - T5")
+  st.markdown("New Auto Generated Meta Description - T5")
   st.write(new_description)
