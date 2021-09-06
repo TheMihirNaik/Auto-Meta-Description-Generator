@@ -1,5 +1,9 @@
 streamlit
-pyngrok
-transformers
+urllib
+requests
+bs4
 html2text
-
+re
+transformers
+pyngrok
+os
