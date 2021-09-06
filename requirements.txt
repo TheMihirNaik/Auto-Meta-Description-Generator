@@ -1,17 +1,5 @@
 streamlit
-pip install pyngrok
-pip install transformers
-pip install html2text
-pip install sentencepiece
-
-import streamlit as st
-import urllib
-import requests
-from bs4 import BeautifulSoup
-import re
-import requests
-import html2text
-import re
-from transformers import pipeline
-import os
-from transformers import PegasusTokenizer, PegasusForConditionalGeneration
+pyngrok
+transformers
+html2text
+sentencepiece
