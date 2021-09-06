@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 import requests
 import html2text
 from transformers import pipeline
-import os
+
 #from transformers import PegasusTokenizer, PegasusForConditionalGeneration
 
 # Set headers
@@ -33,8 +33,6 @@ if url:
   find_description = soup.find('meta', {'name':'description'})
   existing_description = find_description['content']
   st.write(existing_description)
-  
-  os.environ["CUDA_VISIBLE_DEVICES"] = "0"
   
   st.text("Status : Pytorch Summarizer Initiated. It will take around 2 minutes to get up to speed")
 
