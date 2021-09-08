@@ -4,9 +4,10 @@ import re
 import requests
 from bs4 import BeautifulSoup
 import html2text
+import mistletoe
 from mistletoe import markdown
 from html2text import HTML2Text
-import mistletoe
+
 
 from transformers import BartTokenizer, BartForConditionalGeneration
 import torch
