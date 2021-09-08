@@ -4,5 +4,6 @@ requests==2.26.0
 bs4
 html2text
 transformers
-pyngrok
-tensorflow-cpu
+sentencepiece
+mistletoe
+torch
