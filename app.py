@@ -12,11 +12,6 @@ from html2text import HTML2Text
 from transformers import BartTokenizer, BartForConditionalGeneration
 import torch
 
-model = BartForConditionalGeneration.from_pretrained('facebook/bart-large-cnn')
-tokenizer = BartTokenizer.from_pretrained('facebook/bart-large-cnn')
-
-from transformers import pipeline
-summarizer = pipeline("summarization", model="t5-base", tokenizer="t5-base", framework="tf")
 
 
 # Set headers
@@ -27,6 +22,12 @@ st.title("🔎 Auto Meta Description Generator")
 
 url = st.text_input("")
 if url:
+  model = BartForConditionalGeneration.from_pretrained('facebook/bart-large-cnn')
+  tokenizer = BartTokenizer.from_pretrained('facebook/bart-large-cnn')
+
+  from transformers import pipeline
+  summarizer = pipeline("summarization", model="t5-base", tokenizer="t5-base", framework="tf")
+
   req = requests.get(url, headers)
   soup = BeautifulSoup(req.content, 'html.parser')
   html = soup.prettify()
