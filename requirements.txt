@@ -1,9 +1,10 @@
+transformers
 streamlit==0.75.0
 urllib3
 requests==2.26.0
 bs4
 html2text
-transformers
+
 sentencepiece
 mistletoe
 torch
