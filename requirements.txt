@@ -4,7 +4,6 @@ urllib3
 requests==2.26.0
 bs4
 html2text
-
 sentencepiece
 mistletoe
-torch
+tensorflow
