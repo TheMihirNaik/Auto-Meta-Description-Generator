@@ -5,4 +5,4 @@ requests==2.26.0
 bs4
 html2text
 mistletoe
-tensorflow
+tensorflow-cpu
