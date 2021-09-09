@@ -6,4 +6,3 @@ bs4
 html2text
 sentencepiece
 mistletoe
-tensorflow
