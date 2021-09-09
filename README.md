@@ -8,4 +8,4 @@ To properly convert HTML to text
 https://skeptric.com/html-to-text/
 
 To summarize large lext(more than 521 tokens using transformers)
-https://discuss.huggingface.co/t/summarization-on-long-documents/920/23
+https://github.com/nicknochnack/Longform-Summarization-with-Hugging-Face/blob/main/LongSummarization.ipynb
