@@ -1,33 +1,25 @@
-import urllib
-import requests
-import re
-import requests
+from transformers import pipeline
 from bs4 import BeautifulSoup
-import html2text
+import requests
+import urllib
+import re
 import mistletoe
+import html2text
 from mistletoe import markdown
 from html2text import HTML2Text
-
-
-from transformers import BartTokenizer, BartForConditionalGeneration
-import torch
-
-
 
 # Set headers
 headers = requests.utils.default_headers()
 headers.update({ 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0'})
 
+st.text("Status : Transformer just initiated. It will take around 60 seconds for URL input box to show.")
+summarizer = pipeline("summarization", model="t5-base", tokenizer="t5-base", framework="tf")
+
+
 st.title("🔎 Auto Meta Description Generator")
 
 url = st.text_input("")
 if url:
-  model = BartForConditionalGeneration.from_pretrained('facebook/bart-large-cnn')
-  tokenizer = BartTokenizer.from_pretrained('facebook/bart-large-cnn')
-
-  from transformers import pipeline
-  summarizer = pipeline("summarization", model="t5-base", tokenizer="t5-base", framework="tf")
-
   req = requests.get(url, headers)
   soup = BeautifulSoup(req.content, 'html.parser')
   html = soup.prettify()
@@ -60,39 +52,47 @@ if url:
       text = re.sub(r'^\n+', '', text)
       return text
 
-  text_ready = html2plain(html)
+  ARTICLE = html2plain(html)
   st.text("Status : URL scraped, HTMP Parsed & Cleaned. The content is ready for Summarization.")
+  
+  max_chunk = 500
 
+  ARTICLE = ARTICLE.replace('.', '.<eos>')
+  ARTICLE = ARTICLE.replace('?', '?<eos>')
+  ARTICLE = ARTICLE.replace('!', '!<eos>')
+
+  sentences = ARTICLE.split('<eos>')
+  current_chunk = 0 
+  chunks = []
+
+  for sentence in sentences:
+      if len(chunks) == current_chunk + 1: 
+          if len(chunks[current_chunk]) + len(sentence.split(' ')) <= max_chunk:
+              chunks[current_chunk].extend(sentence.split(' '))
+          else:
+              current_chunk += 1
+              chunks.append(sentence.split(' '))
+      else:
+          print(current_chunk)
+          chunks.append(sentence.split(' '))
+
+  for chunk_id in range(len(chunks)):
+      chunks[chunk_id] = ' '.join(chunks[chunk_id])
+
+  st.text("Status : Text chunking in less than 500 tokens complete.")
+  st.text("Status : Summarising each chunk.")
+  res = summarizer(chunks, max_length=160, min_length=30, do_sample=False)
+  
+  res[0]
+  ' '.join([summ['summary_text'] for summ in res])
+  text = ' '.join([summ['summary_text'] for summ in res])
+  st.text("Status : Summaized text from chunks are joined. Now Summarizing for Meta Descrition.")
+  final_text = summarizer(text, max_length=160, min_length=30, do_sample=False)
+  
+  st.markdown("New Auto Generated Meta Description - T5")
+  st.write(final_text)
+  
   st.markdown("Existing Meta Description")
   find_description = soup.find('meta', {'name':'description'})
   existing_description = find_description['content']
   st.write(existing_description)
-  
-  st.text("Status : Pytorch Summarizer Initiated. It will take around 2 minutes to get up to speed")
-
-  # tokenize without truncation
-  inputs_no_trunc = tokenizer(text_ready, max_length=None, return_tensors='pt', truncation=False)
-
-  # get batches of tokens corresponding to the exact model_max_length
-  chunk_start = 0
-  chunk_end = tokenizer.model_max_length  # == 1024 for Bart
-  inputs_batch_lst = []
-  while chunk_start <= len(inputs_no_trunc['input_ids'][0]):
-      inputs_batch = inputs_no_trunc['input_ids'][0][chunk_start:chunk_end]  # get batch of n tokens
-      inputs_batch = torch.unsqueeze(inputs_batch, 0)
-      inputs_batch_lst.append(inputs_batch)
-      chunk_start += tokenizer.model_max_length  # == 1024 for Bart
-      chunk_end += tokenizer.model_max_length  # == 1024 for Bart
-
-  # generate a summary on each batch
-  summary_ids_lst = [model.generate(inputs, num_beams=4, max_length=160, early_stopping=True) for inputs in inputs_batch_lst]
-
-  # decode the output and join into one string with one paragraph per summary batch
-  summary_batch_lst = []
-  for summary_id in summary_ids_lst:
-      summary_batch = [tokenizer.decode(g, skip_special_tokens=True, clean_up_tokenization_spaces=False) for g in summary_id]
-      summary_batch_lst.append(summary_batch[0])
-  summary_all = '\n'.join(summary_batch_lst)
-
-  st.markdown("New Auto Generated Meta Description - T5")
-  st.write(summary_all)
