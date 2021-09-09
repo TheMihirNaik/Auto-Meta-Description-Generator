@@ -14,7 +14,7 @@ headers = requests.utils.default_headers()
 headers.update({ 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0'})
 
 st.text("Status : Transformer just initiated. It will take around 60 seconds for URL input box to show.")
-summarizer = pipeline("summarization", model="t5-base", tokenizer="t5-base", framework="tf")
+summarizer = pipeline("summarization")
 
 
 st.title("🔎 Auto Meta Description Generator")
