@@ -4,7 +4,7 @@ html2text
 sentencepiece
 mistletoe
 sumy
-
+tensorflow
 beautifulsoup4
 nltk
 requests
