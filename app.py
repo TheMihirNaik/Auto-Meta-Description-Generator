@@ -31,7 +31,7 @@ nltk.download('punkt')
 st.title("🔎 :pencil: Auto Meta Description Generator")
 
 st.info("Status : Transformers t5-base Summarization Pipeline is being initialized.")
-t5_summarizer = pipeline("summarization", model="t5-base", tokenizer="t5-base", framework="tf")
+t5_summarizer = pipeline("summarization", model="t5-base", tokenizer="t5-base")
 st.success("Status : Successfully Initialized. You will be able to use this for multiple URLs during session.")
 
 
