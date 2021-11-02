@@ -11,7 +11,7 @@ import mistletoe
 from mistletoe import markdown
 from html2text import HTML2Text
 
-import torch
+#import torch
 import json 
 from transformers import T5Tokenizer, T5ForConditionalGeneration, T5Config
 from transformers import pipeline
