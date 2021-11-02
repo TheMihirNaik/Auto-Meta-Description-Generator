@@ -7,4 +7,5 @@ mistletoe
 sumy
 torch
 beautifulsoup4
+nltk
 
