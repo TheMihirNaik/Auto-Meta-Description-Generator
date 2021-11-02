@@ -1,11 +1,15 @@
 # Auto Meta Description Generator
 
-You will be able to create Meta Descriptions using URL as an input.
+It takes URL as input, scrapes, parse and convert HTML to text.
+
+Using this text, generates Extractive Summarization of 15 sentences using Gensim LSA Summarization method.
+
+Then use this summary to generate Abstractive summary of 160 chars.
 
 I have used codes from the following sources:
 
 To properly convert HTML to text
 https://skeptric.com/html-to-text/
 
-To summarize large lext(more than 512 tokens using transformers)
-https://github.com/nicknochnack/Longform-Summarization-with-Hugging-Face/blob/main/LongSummarization.ipynb
+To generate LSA Summarization.
+https://www.machinelearningplus.com/nlp/text-summarization-approaches-nlp-example/
