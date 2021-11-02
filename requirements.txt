@@ -1,5 +1,4 @@
 streamlit
-pyngrok
 transformers
 html2text
 sentencepiece
@@ -8,4 +7,7 @@ sumy
 torch
 beautifulsoup4
 nltk
+requests
+re
+
 
