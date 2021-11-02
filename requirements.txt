@@ -1,8 +1,10 @@
+streamlit
+pyngrok
 transformers
-streamlit==0.75.0
-urllib3
-requests==2.26.0
-bs4
 html2text
+sentencepiece
 mistletoe
-tensorflow-cpu
+sumy
+torch
+from __future__ import absolute_import
+from __future__ import division, print_function, unicode_literals
