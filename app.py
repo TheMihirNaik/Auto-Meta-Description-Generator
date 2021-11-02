@@ -63,7 +63,7 @@ if url:
   LSA_summarizer = LsaSummarizer()
 
   #removing stopwords
-  LSA_summarizer.stop_words = get_stop_words(LANGUAGE)
+  #LSA_summarizer.stop_words = get_stop_words(LANGUAGE)
 
   #Summarize the document with 15 sentences
   LSA_Summary =LSA_summarizer(parser.document,15)
