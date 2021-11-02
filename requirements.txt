@@ -6,4 +6,5 @@ sentencepiece
 mistletoe
 sumy
 torch
+beautifulsoup4
 
