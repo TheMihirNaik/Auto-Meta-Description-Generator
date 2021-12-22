@@ -31,7 +31,7 @@ nltk.download('punkt')
 st.title("🔎 :pencil: Auto Meta Description Generator")
 
 st.info("Status : Transformers t5-base Summarization Pipeline is being initialized.")
-t5_summarizer = pipeline("summarization", model="t5-base", tokenizer="t5-base")
+#t5_summarizer = pipeline("summarization", model="t5-base", tokenizer="t5-base")
 st.success("Status : Successfully Initialized. You will be able to use this for multiple URLs during session.")
 
 
@@ -54,8 +54,8 @@ if url:
   st.markdown('HTML converted to Text')
   #st.markdown(full_page_text)
   
-  LANGUAGE = 'english'
-  parser = PlaintextParser.from_string(full_page_text, Tokenizer(LANGUAGE))
+  #LANGUAGE = 'english'
+  #parser = PlaintextParser.from_string(full_page_text, Tokenizer(LANGUAGE))
 
   from sumy.summarizers.lsa import LsaSummarizer
 
@@ -79,7 +79,7 @@ if url:
   
 
   st.header(':pencil2: Generating - Meta Description using Extractive Summary.  It takes 2-3 mins.')
-  new_description = t5_summarizer(LSA_Summary_Text, max_length=160, min_length=30, do_sample=False)
+  #new_description = t5_summarizer(LSA_Summary_Text, max_length=160, min_length=30, do_sample=False)
 
   st.info(':pencil: Here is your New Description')
   st.success(new_description[0]['summary_text'].capitalize())
